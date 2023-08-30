@@ -1,4 +1,4 @@
-// Created by Edward at 2023/08/29 18:11
+ :/ Created by Edward at 2023/08/29 18:11
 // leetgo: 1.3.7
 // https://leetcode.cn/problems/remove-element/
 
