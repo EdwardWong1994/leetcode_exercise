@@ -19,19 +19,19 @@ public:
 
 ListNode*  ListNode::CreateLink(vector<int> nums){
     //创建链表的函数
+    //创建一个dummyNode方便以后操作：
+    ListNode*  dummyNode=new ListNode(0);
     ListNode* head = nullptr, *tail = nullptr;
     for(int num:nums){
         if(head==nullptr){
             head=new ListNode(num);
             tail=head;
+            dummyNode->next=head;
         }else{
             tail->next=new ListNode(num);
             tail=tail->next;
         }
     }
-    //创建一个dummyNode方便以后操作：
-    ListNode*  dummyNode=nullptr;
-    dummyNode->next=head;
     return dummyNode;   //返回的是虚拟头节点
 }
 
@@ -65,10 +65,11 @@ void ListNode::printNode(ListNode* dummyNode){
 }
 
 int main(){
-    vector<int> nums={ 1,2,6,3,4,5,6 };
+    vector<int> nums={ 1,3,4,6,2,6,6 };
     int  val=6;
     ListNode* dummyNode  = new ListNode(0);
     dummyNode=dummyNode->CreateLink(nums);
     dummyNode=dummyNode->removeElements(dummyNode,val);
     dummyNode->printNode(dummyNode);
+    return 0;
 }
