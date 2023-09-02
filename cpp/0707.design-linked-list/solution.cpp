@@ -9,29 +9,27 @@ using namespace std;
 // @lc code=begin
 
 class MyLinkedList {
-private:
-    ListNode* dummyNode = new ListNode(0);
-    int count=0;
 public:
+    ListNode* dummyNode=new  ListNode(0);
+    static int count;
     MyLinkedList() {
         //初始化链表
         //定义一个dummyNode节点
-        dummyNode->next=new ListNode(0);
-        // dummyNode->next =nullptr; // 对于最后一个节点指向nullptr不需要填写
+        dummyNode->next =nullptr; // 对于最后一个节点指向nullptr不需要填写
     }
 
-    //   int Nums_Ele(){
-    //       ListNode*  cur = dummyNode;
-    //       while(cur->next!=nullptr){
-    //           cur=cur->next;
-    //           count++;    //count其实记录的是元素的个数
-    //       } 
-    //       return count;   //这个count返回的是元素的实际个数，不包含dummyNode节点
-    //   }
+    int Nums_Ele(){
+        ListNode*  cur = dummyNode;
+        while( cur->next!=nullptr){
+            cur=cur->next;
+            count++;
+        } 
+        return count;   //这个count返回的是元素的实际个数，不包含dummyNode节点
+    }
 
     int get(int index) {
-        //  count=Nums_Ele();
-        if (index<0 || index>(count-1)) return -1;
+        int nums = Nums_Ele();
+        if (index<0 || index>(nums-1)) return -1;
         //因为有dummyNode，，所以在使用index的时候要小心
         //    ListNode* cur = dummyNode;
         ListNode* nex = dummyNode->next;
@@ -49,7 +47,6 @@ public:
         //     ListNode* tmp = dummyNode->next;
         Node->next=dummyNode->next;
         dummyNode->next=Node;
-        count++;
     }
 
     void addAtTail(int val) {
@@ -59,29 +56,27 @@ public:
             cur = cur->next;
         }
         cur->next = newNode;
-        count++;
     }
 
 
-    //    void addAtTail(int val) {
-    //        //在链表尾部添加节点
-    //        ListNode* cur = dummyNode;
-    //        ListNode* nex = dummyNode->next; 
-    //        while(nex->next  != nullptr){
-    //            cur=nex;
-    //            nex=nex->next;
-    //        }
-    //        ListNode* Node = new  ListNode(val);
-    //        nex->next = Node;
-    //        count++;
-    //    }
+    //   void addAtTail(int val) {
+    //在链表尾部添加节点
+    //       ListNode* cur = dummyNode;
+    //       ListNode* nex = dummyNode->next; 
+    //       while(nex->next  != nullptr){
+    //           cur=nex;
+    //           nex=nex->next;
+    //       }
+    //       ListNode* Node = new  ListNode(val);
+    //       nex->next = Node;
+    //   }
     //
     //
     //
 
     void addAtIndex(int index, int val) {
-
-        if(index > count-1) return;
+        int nums=Nums_Ele();
+        if(index > nums) return;    //一定要注意地方的边界是index> count,不可以是index>count-1; 因为当cur被定义指向dummyNode，那么index等于count，也就是相当于最后一次循环指向了最后一个节点  
         if(index < 0) index = 0;        
         ListNode* newNode = new ListNode(val);
         ListNode* cur = dummyNode;
@@ -90,7 +85,6 @@ public:
         }
         newNode->next = cur->next;
         cur->next = newNode;
-        count++;
     }
 
     //    void addAtIndex(int index, int val) {
@@ -128,7 +122,8 @@ public:
     //       count--;
     //   }
     void deleteAtIndex(int index) {
-        if (index >= count-1 || index < 0) {
+        int nums=Nums_Ele();
+        if (index > nums-1 || index < 0) {
             return;
         }
         ListNode* cur = dummyNode;
@@ -142,17 +137,16 @@ public:
         //被delete后的指针tmp的值（地址）并非就是NULL，而是随机值。也就是被delete后，
         //如果不再加上一句tmp=nullptr,tmp会成为乱指的野指针
         //如果之后的程序不小心使用了tmp，会指向难以预想的内存空间
-        tmp=nullptr;
-        count--;
     }
 };
 
+int MyLinkedList::count = 0;    //如果在类中定义了静态成员变量，需要在类中声明静态成员变量，然后在类外单独定义。
+//静态成员变量是所有类共享的。
 // @lc code=end
 
 int main() {
     ios_base::sync_with_stdio(false);
     stringstream out_stream;
-
     vector<string> method_names;
     LeetCodeIO::scan(cin, method_names);
 
