@@ -1,0 +1,151 @@
+// Created by EdwardWong1994 at 2023/09/01 18:28
+// leetgo: 1.3.7
+// https://leetcode.cn/problems/design-linked-list/
+
+#include "../bits/stdc++.h"
+#include "../LC_IO.h"
+using namespace std;
+
+// @lc code=begin
+
+class MyLinkedList {
+public:
+    ListNode* dummyNode = new ListNode(0);
+    int count=0;
+    MyLinkedList() {
+        //初始化链表
+        //定义一个dummyNode节点
+        dummyNode->next=nullptr;
+    }
+
+    int Nums_Ele(){
+        ListNode*  cur = dummyNode;
+        while(cur->next!=nullptr){
+            count++;    //count其实记录的是元素的个数
+        } 
+        return count;   //这个count返回的是元素的实际个数，不包含dummyNode节点
+    }
+
+    int get(int index) {
+        count=Nums_Ele();
+        if (index<0 || index>=count) return -1;
+        //因为有dummyNode，，所以在使用index的时候要小心
+        int nums=index; 
+        ListNode* cur = dummyNode;
+        ListNode* nex = dummyNode->next;
+        while((nums--)!=0){
+            cur=nex;
+            nex=nex->next;
+        } 
+        return nex->val;
+    }
+
+    void addAtHead(int val) {
+        //在链表头部添加节点
+        ListNode* Node = new  ListNode(val);
+        ListNode* tmp = dummyNode->next;
+        dummyNode->next=tmp;
+        tmp->next=tmp; 
+    }
+
+    void addAtTail(int val) {
+        //在链表尾部添加节点
+        ListNode* cur = dummyNode;
+        ListNode* nex = dummyNode->next; 
+        while(cur->next->next  != nullptr){
+            cur=nex;
+            nex=nex->next;
+        }
+        ListNode* Node = new  ListNode(val);
+        nex->next = Node;
+    }
+
+    void addAtIndex(int index, int val) {
+        //在index处前添加一个节点，考察指针的移动操作
+        //因为dummyNode被我算作了一个节点，
+        count = Nums_Ele();
+        if(index<0 || index>=count)  return;
+        ListNode* cur = dummyNode;
+        ListNode* nex = dummyNode->next;
+        while(index--){
+            cur= nex;
+            nex=nex->next;
+        }
+        ListNode* Node = new ListNode(val);
+        cur->next=Node;
+        Node->next=nex;
+    }
+
+    void deleteAtIndex(int index) {
+        //删除在index处的节点
+        count = Nums_Ele();
+        ListNode* cur =dummyNode;
+        ListNode* nex =dummyNode->next;
+        if(index<0 || index>=count) return;
+        int nums=index;
+        while(nums--){
+            cur->next=nex;
+            nex=nex->next;
+        }
+        //不要忘记删除节点
+        ListNode* tmp=nex;
+        cur->next=nex->next;
+        delete nex;
+    }
+};
+
+// @lc code=end
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    stringstream out_stream;
+
+    vector<string> method_names;
+    LeetCodeIO::scan(cin, method_names);
+
+    MyLinkedList *obj;
+    const unordered_map<string, function<void()>> methods = {
+        { "MyLinkedList", [&]() {
+            cin.ignore();
+            obj = new MyLinkedList();
+            out_stream << "null,";
+        } },
+        { "get", [&]() {
+            int index; LeetCodeIO::scan(cin, index); cin.ignore();
+            LeetCodeIO::print(out_stream, obj->get(index)); out_stream << ',';
+        } },
+        { "addAtHead", [&]() {
+            int val; LeetCodeIO::scan(cin, val); cin.ignore();
+            obj->addAtHead(val);
+            out_stream << "null,";
+        } },
+        { "addAtTail", [&]() {
+            int val; LeetCodeIO::scan(cin, val); cin.ignore();
+            obj->addAtTail(val);
+            out_stream << "null,";
+        } },
+        { "addAtIndex", [&]() {
+            int index; LeetCodeIO::scan(cin, index); cin.ignore();
+            int val; LeetCodeIO::scan(cin, val); cin.ignore();
+            obj->addAtIndex(index, val);
+            out_stream << "null,";
+        } },
+        { "deleteAtIndex", [&]() {
+            int index; LeetCodeIO::scan(cin, index); cin.ignore();
+            obj->deleteAtIndex(index);
+            out_stream << "null,";
+        } },
+    };
+    cin >> ws;
+    out_stream << '[';
+    for (auto &&method_name : method_names) {
+        cin.ignore(2);
+        methods.at(method_name)();
+    }
+    cin.ignore();
+    out_stream.seekp(-1, ios_base::end); out_stream << ']';
+    cout << "\noutput: " << out_stream.rdbuf() << endl;
+
+    delete obj;
+    return 0;
+}

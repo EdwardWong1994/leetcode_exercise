@@ -33,3 +33,7 @@ void AddIndex(int index, int val){
 }
 
 ```
+
+## 不知道为何一直AC不了，出现 `member access within null pointer of type 'ListNode'`
+
+等待解决？？？
