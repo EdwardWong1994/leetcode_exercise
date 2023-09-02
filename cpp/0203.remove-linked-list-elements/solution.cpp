@@ -2,8 +2,8 @@
 // leetgo: 1.3.7
 // https://leetcode.cn/problems/remove-linked-list-elements/
 
-#include <bits/stdc++.h>
-#include "LC_IO.h"
+#include "../bits/stdc++.h"
+#include "../LC_IO.h"
 using namespace std;
 
 //一定要自己会写链表
