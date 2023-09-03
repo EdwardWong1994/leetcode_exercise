@@ -20,7 +20,7 @@ public:
         while(cur->next!=nullptr &&  cur->next->next!=nullptr  &&  cur->next->next->next!=nullptr) {
             ListNode*  node1=tmp->next;
             tmp->next=nex;    //步骤一
-            cur->next=tmp;    //步骤二
+           cur->next=tmp;    //步骤二
             nex->next=node1;  //步骤三
             cur=nex;
             //   if(){

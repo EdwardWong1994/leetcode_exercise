@@ -8,7 +8,7 @@
 
 ![](https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg)
 
-```
+``
 输入：head = [1,2,3,4,5]
 输出：[5,4,3,2,1]
 

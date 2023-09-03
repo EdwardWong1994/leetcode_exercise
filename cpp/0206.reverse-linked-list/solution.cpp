@@ -52,7 +52,7 @@ using namespace std;
 //    }
 //};
 //
-// 从后向前翻转的递归实现
+//  后向前翻转的递归实现
 class Solution{
 public:
     ListNode* reverseList(ListNode*  head){
