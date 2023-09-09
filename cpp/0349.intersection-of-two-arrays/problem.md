@@ -86,15 +86,19 @@ return 0;
 #include <algorithm>
 
 int main() {
-    std::vector<int> myVec = {1, 2, 3, 4, 5};
-    auto it = std::find(myVec.begin(), myVec.end(), 3);
-    if (it != myVec.end()) {
-        std::cout << "Element found in vector!" << std::endl;
-    } else {
-        std::cout << "Element not found in vector!" << std::endl;
-    }
-    return 0;
+std::vector<int> myVec = {1, 2, 3, 4, 5};
+auto it = std::find(myVec.begin(), myVec.end(), 3);
+if (it != myVec.end()) {
+std::cout << "Element found in vector!" << std::endl;
+} else {
+std::cout << "Element not found in vector!" << std::endl;
+}
+return 0;
 }
 
 ```
 
+
+4. 可以使用迭代器初始化一个容器吗？
+
+`unordered_set<int> set1(nums1.begin(),nums2.end())`
