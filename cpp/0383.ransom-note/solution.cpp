@@ -8,20 +8,39 @@ using namespace std;
 
 // @lc code=begin
 
-class Solution {
+// class Solution {
+// public:
+//     bool canConstruct(string ransomNote, string magazine) {
+//         std::multiset<char> mset;
+//         for(auto s:magazine){
+//             mset.insert(s);     
+//         }
+//         for(auto t:ransomNote){
+//             multiset<char>::iterator it = mset.find(t);
+//             if(it!=mset.end()){
+//                 mset.erase(it);
+//             }else{
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+// };
+//
+class Solution{
 public:
-    bool canConstruct(string ransomNote, string magazine) {
-        std::multiset<char> mset;
+    bool canConstruct(string ransomNote, string magazine){
+        //使用数组作为哈希表的容器
+        //字母作为索引，字母出现的次数作为数组的值
+        int A[27]={0};
         for(auto s:magazine){
-            mset.insert(s);     
+            A[s-'a']++;
         }
-        for(auto t:ransomNote){
-            multiset<char>::iterator it = mset.find(t);
-            if(it!=mset.end()){
-                mset.erase(it);
-            }else{
-                return false;
-            }
+        for(auto t: ransomNote){
+            A[t-'a']--;
+        }
+        for(int i=0; i<=26;++i){
+            if(A[i]<0) return  false;
         }
         return true;
     }
