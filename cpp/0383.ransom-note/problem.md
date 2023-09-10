@@ -37,7 +37,7 @@
     #include <iostream>
     #include <set>
 
-    int main()
+    int main() 
     {
     std::multiset<int> mySet = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
 
@@ -59,4 +59,4 @@
     ```
 
 
-2.  在最初的算法思路上，采用了`multiset`容器，但是采用数组作为哈希表会比较方便，因为对于`multiset`需要维护红黑树，还要做哈希函数，不如数组高效
+2.  在最初的算法思路上，采用了`multiset`容器，但是采用数组作为哈希表会比较方便，因为对于`multiset`需要维护红黑树，还要做哈希函数，不 n 如数组高效
