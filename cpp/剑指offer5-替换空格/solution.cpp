@@ -30,8 +30,21 @@ string  subStr::substitute(string  s){
             // nums--/* / */* ; */
         }
     }
+    // for(int i=nums1-1;i>=0;i--){
+    //     if(s[i]==' '){
+    //         s[nums-1]='0';
+    //         s[nums-2]='2';
+    //         s[nums-3]='%';
+    //         nums=nums-4;
+    //         // nums--;
+    //     }else{
+    //         s[nums--]=s[i];
+    //         // nums--/* / */* ; */
+    //     }
+    // }
     return s;
 }
+
 
 
 int main(){
