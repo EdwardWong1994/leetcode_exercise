@@ -12,3 +12,9 @@ input:
 "a good   example"
 output:
 "example good a"
+
+
+input:
+" hello world"
+output:
+"world hello"

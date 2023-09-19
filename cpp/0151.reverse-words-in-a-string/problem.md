@@ -52,3 +52,9 @@ str.erase(iter1, iter2); // 删除[iter1, iter2)范围内的字符
 ##  在使用库函数`erase`函数时需要知道`erase()`函数的时间复杂度是`o(n)`
 
 ##  这道题可以使用双指针的思路移除空格
+
+在使用双指针解答问题的时候，一直出现一个`case`通过不了的情况，“  hello  world  ” -->  返回结果是` world hello`
+
+`if(right==s.size()-1  &&  s[right]==' ')  break;`
+
+
