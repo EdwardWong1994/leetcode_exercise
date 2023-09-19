@@ -28,8 +28,8 @@ string  Str::strReverse(string s, int k){
     if(nums>=2*k){
         for(int i=0;i<s.size();i+=2*k){
             swap(&(s[i]),k);
-            nums=nums-2*k;
-            if(nums<2*k) break;
+            nums=nums-2*k;    //剩余的字符数
+            if(nums<2*k) break;    //当剩余的字符数小于2k时，跳出循环
         } 
     }
     if(nums>=k && nums<2*k){
